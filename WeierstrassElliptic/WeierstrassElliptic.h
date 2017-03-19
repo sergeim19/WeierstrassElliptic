@@ -1,5 +1,8 @@
 #pragma once
 
+// Work in progress.
+// Evaluate Weierstrass P and Zeta functions using methods described in http://dlmf.nist.gov/23.22
+
 //#include <complex>
 
 typedef std::complex<double> cdouble;
