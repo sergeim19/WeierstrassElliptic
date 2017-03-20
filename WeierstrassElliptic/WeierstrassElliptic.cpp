@@ -81,7 +81,46 @@ cdouble WeierstrassElliptic::JacobiTheta(
 		} while (diff > TOL);
 
 		break;
+	default:// TODO: Wrong input.
+		break;
 	}
 
 	return J;
+}
+
+cdouble WeierstrassElliptic::LatticeRoot(
+	int type,
+	cdouble q,
+	cdouble omega1)
+{
+	// TODO: Validate input.
+	cdouble root;
+
+	switch (type)
+	{
+	case(1):
+		root = pow(PI, 2) / (12.0 * pow(omega1, 2)) * (pow(JacobiTheta(2, 0, q), 4) + 2.0 * pow(JacobiTheta(4, 0, q), 4));
+		break;
+
+	case(2):
+		root = pow(PI, 2) / (12.0 * pow(omega1, 2)) * (pow(JacobiTheta(2, 0, q), 4) - pow(JacobiTheta(4, 0, q), 4));
+		break;
+
+	case(3):
+		root = pow(PI, 2) / (12.0 * pow(omega1, 2)) * (2.0 * pow(JacobiTheta(2, 0, q), 4) + pow(JacobiTheta(4, 0, q), 4));
+		break;
+
+	default: // TODO: Wrong input.
+		break;
+	}
+
+	return root;
+}
+
+cdouble WeierstrassEllipticP(
+	cdouble z,
+	cdouble q,
+	cdouble omega1)
+{
+	return 0;
 }

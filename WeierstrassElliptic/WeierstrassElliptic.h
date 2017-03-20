@@ -17,4 +17,14 @@ public:
 		int type,
 		cdouble z,
 		cdouble q);
+
+	static cdouble LatticeRoot(
+		int type,
+		cdouble q,
+		cdouble omega1);
+
+	static cdouble WeierstrassP(
+		cdouble z,
+		cdouble q,
+		cdouble omega1);
 };
