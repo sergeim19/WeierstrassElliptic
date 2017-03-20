@@ -22,7 +22,7 @@ cdouble WeierstrassElliptic::JacobiTheta(
 	cdouble J, Jnew;
 	double diff;
 	int n;
-	
+
 	switch (type)
 	{
 	case(1):
@@ -30,14 +30,14 @@ cdouble WeierstrassElliptic::JacobiTheta(
 		n = 0;
 
 		// Evaluate series.
-		do 
+		do
 		{
 			Jnew = J + 2.0 * pow(-1, n) * pow(q, pow(n + 0.5, 2)) * sin((2.0 * n + 1.0) * z);
 			diff = abs(Jnew - J);
 			J = Jnew;
 			n++;
 		} while (diff > TOL);
- 
+
 		break;
 
 	case(2):
