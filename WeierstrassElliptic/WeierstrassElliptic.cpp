@@ -3,15 +3,16 @@
 #include <complex>
 #include "WeierstrassElliptic.h"
 
-void main()
+int main()
 {
-	int type = 4;
+	int type = 1;
 	cdouble z(2.0, -1.0);
 	cdouble q(0.0, exp(-PI));
 
 	cdouble J = WeierstrassElliptic::JacobiTheta(type, z, q);
 	printf("J = %.16f + %.16f i\n", J.real(), J.imag());
-	std::getchar();
+  std::getchar();
+	return 0;
 }
 
 cdouble WeierstrassElliptic::JacobiTheta(
@@ -117,10 +118,22 @@ cdouble WeierstrassElliptic::LatticeRoot(
 	return root;
 }
 
-cdouble WeierstrassEllipticP(
+cdouble WeierstrassElliptic::WeierstrassEllipticP(
 	cdouble z,
 	cdouble q,
 	cdouble omega1)
 {
-	return 0;
+	// TODO: Validate input
+
+	// Evaluate lattice root 1
+	cdouble e1 = LatticeRoot(1, q, omega1);
+
+	// Evaluate Weierstrass Elliptic P function
+	cdouble z0 = PI * z / (2.0 * omega1);
+	cdouble P = pow(
+		PI * JacobiTheta(3, 0.0, q) * JacobiTheta(4, 0.0, q) * JacobiTheta(2, z0, q)/
+		(2.0 * omega1 * JacobiTheta(1, z0, q)), 2);
+	P += e1;
+
+	return P;
 }

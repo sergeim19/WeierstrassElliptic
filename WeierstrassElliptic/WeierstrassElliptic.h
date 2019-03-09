@@ -23,7 +23,7 @@ public:
 		cdouble q,
 		cdouble omega1);
 
-	static cdouble WeierstrassP(
+	static cdouble WeierstrassEllipticP(
 		cdouble z,
 		cdouble q,
 		cdouble omega1);
