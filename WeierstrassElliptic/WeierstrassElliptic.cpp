@@ -1,6 +1,10 @@
 #include <stdio.h>
+#include <iostream>
+#include <fstream>
+
 #include <math.h>
 #include <complex>
+
 #include "WeierstrassElliptic.h"
 
 int main()
@@ -20,16 +24,14 @@ cdouble WeierstrassElliptic::JacobiTheta(
 	cdouble z,
 	cdouble q)
 {
-	cdouble J, Jnew;
-	double diff;
-	int n;
+	// Initialize.
+	cdouble J = 0.0, Jnew = 0.0;
+	double diff = 1.0e10;
+	int n = 0;
 
 	switch (type)
 	{
 	case(1):
-		J = 0.0 + 0.0 * I;
-		n = 0;
-
 		// Evaluate series.
 		do
 		{
@@ -37,7 +39,7 @@ cdouble WeierstrassElliptic::JacobiTheta(
 			diff = abs(Jnew - J);
 			J = Jnew;
 			n++;
-		} while (diff > TOL);
+		} while(diff > TOL);
 
 		break;
 
@@ -51,7 +53,7 @@ cdouble WeierstrassElliptic::JacobiTheta(
 			diff = abs(Jnew - J);
 			J = Jnew;
 			n++;
-		} while (diff > TOL);
+		} while(diff > TOL);
 
 		break;
 
@@ -65,7 +67,7 @@ cdouble WeierstrassElliptic::JacobiTheta(
 			diff = abs(Jnew - J);
 			J = Jnew;
 			n++;
-		} while (diff > TOL);
+		} while(diff > TOL);
 
 		break;
 
@@ -79,7 +81,7 @@ cdouble WeierstrassElliptic::JacobiTheta(
 			diff = abs(Jnew - J);
 			J = Jnew;
 			n++;
-		} while (diff > TOL);
+		} while(diff > TOL);
 
 		break;
 	default:// TODO: Wrong input.
@@ -95,9 +97,9 @@ cdouble WeierstrassElliptic::LatticeRoot(
 	cdouble omega1)
 {
 	// TODO: Validate input.
-	cdouble root;
+	cdouble root = 0.0;
 
-	switch (type)
+	switch(type)
 	{
 	case(1):
 		root = pow(PI, 2) / (12.0 * pow(omega1, 2)) * (pow(JacobiTheta(2, 0, q), 4) + 2.0 * pow(JacobiTheta(4, 0, q), 4));
